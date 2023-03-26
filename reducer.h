@@ -1,3 +1,6 @@
+#pragma once
+#ifndef MY_SAMPLERATE_REDUCER_H
+#define MY_SAMPLERATE_REDUCER_H
 #include <stdint.h>
 #ifdef __cplusplus
 
@@ -40,4 +43,5 @@ namespace ns_reducer
     float next_sample_;
   };
 } // namespace ns_reducer
+#endif
 #endif
