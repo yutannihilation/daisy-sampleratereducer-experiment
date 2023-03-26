@@ -3,6 +3,8 @@
 #include <math.h>
 
 using namespace ns_reducer;
+using namespace daisysp;
+
 void Reducer::Init()
 {
     frequency_ = .2f;
@@ -26,8 +28,8 @@ float Reducer::Process(float in)
         // Use linear interpolation to recover the fractional sample.
         float new_sample = previous_sample_ + (in - previous_sample_) * (1.0f - t);
         float discontinuity = new_sample - sample_;
-        this_sample += discontinuity * daisysp::ThisBlepSample(t);
-        next_sample_ = discontinuity * daisysp::NextBlepSample(t);
+        this_sample += discontinuity * ThisBlepSample(t);
+        next_sample_ = discontinuity * NextBlepSample(t);
         sample_ = new_sample;
     }
     next_sample_ += sample_;
@@ -38,5 +40,5 @@ float Reducer::Process(float in)
 
 void Reducer::SetFreq(float frequency)
 {
-    frequency_ = daisysp::fclamp(frequency, 0.f, 1.f);
+    frequency_ = fclamp(frequency, 0.f, 1.f);
 }
