@@ -3,7 +3,7 @@
 #include "reducer.h"
 
 // clang-format off
-#define OFFSET_SAMPLERATE_CONTROL 15
+#define OFFSET_SAMPLERATE_CONTROL1 15
 // clang-format on
 
 using namespace daisysp;
@@ -51,12 +51,12 @@ int main(void)
 
     // ADC
     AdcChannelConfig adcConfig[1];
-    adcConfig[0].InitSingle(hw.GetPin(OFFSET_SAMPLERATE_CONTROL));
+    adcConfig[0].InitSingle(hw.GetPin(OFFSET_SAMPLERATE_CONTROL1));
     hw.adc.Init(adcConfig, 1);
 
     reducer.Init();
     samplerate_control.Init(hw.adc.GetPtr(0), sample_rate);
-    samplerate_param.Init(samplerate_control, 0.0, 1.0, Parameter::LINEAR);
+    samplerate_param.Init(samplerate_control, 0.0, 0.2, Parameter::LINEAR);
 
     metro.Init(1.0f, sample_rate);
 
